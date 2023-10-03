@@ -1,31 +1,18 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import Link from 'next/link'
 
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react'
 
 export default function Home() {
-  const textRef = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    console.log(textRef.current?.parentElement?.clientWidth);
-    console.log(textRef.current?.scrollWidth);
-    console.log(textRef.current?.nextElementSibling);
-    console.log(
-      `${textRef.current?.parentElement?.clientWidth} vs ${
-        textRef.current!.scrollWidth + textRef.current!.nextElementSibling!.clientWidth + 5
-      }`
-    );
-  }, []);
-
   return (
     <>
       <h1>Hello</h1>
-      <Flex w="200px">
-        <Text ref={textRef} textOverflow="ellipsis" overflow="hidden" whiteSpace="nowrap">
-          あいうえおかきくけこ
-        </Text>
-        <Text pl="5px">様</Text>
+      <Flex mt={20} gap={10}>
+        <Link href={'/post/13'}>Post 13</Link>
+        <Link href={'/post/33'}>Post 33</Link>
+        <Link href={'/post/43'}>Post 43</Link>
+        <Link href={'/post/53'}>Post 53</Link>
       </Flex>
     </>
   );
