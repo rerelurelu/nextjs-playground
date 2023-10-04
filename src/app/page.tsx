@@ -1,24 +1,33 @@
 'use client';
 
-import Link from 'next/link'
+import { useEffect, useRef } from 'react'
 
 import { Accordion, Button, Flex, Text, useBoolean } from '@chakra-ui/react'
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useBoolean(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
 
-  console.log(isOpen);
+  useEffect(() => {
+    console.log(textRef.current?.parentElement?.clientWidth);
+    console.log(textRef.current?.scrollWidth);
+    console.log(textRef.current?.nextElementSibling);
+    console.log(
+      `${textRef.current?.parentElement?.clientWidth} vs ${
+        textRef.current!.scrollWidth + textRef.current!.nextElementSibling!.clientWidth + 5
+      }`
+    );
+  }, []);
 
   return (
     <>
       <h1>Hello</h1>
-      <Flex mt={20} gap={10}>
-        <Link href={'/post/13'}>Post 13</Link>
-        <Link href={'/post/33'}>Post 33</Link>
-        <Link href={'/post/43'}>Post 43</Link>
-        <Link href={'/post/53'}>Post 53</Link>
+      <Flex w="200px">
+        <Text ref={textRef} textOverflow="ellipsis" overflow="hidden" whiteSpace="nowrap">
+          あいうえおかきくけこ
+        </Text>
+        <Text pl="5px">様</Text>
       </Flex>
-      <Accordion onChange={setIsOpen.toggle}>ボタン</Accordion>
+      <Accordion>ボタン</Accordion>
     </>
   );
 }
