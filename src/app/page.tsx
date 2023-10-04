@@ -2,9 +2,13 @@
 
 import Link from 'next/link'
 
-import { Flex } from '@chakra-ui/react'
+import { Accordion, Button, Flex, Text, useBoolean } from '@chakra-ui/react'
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useBoolean(false);
+
+  console.log(isOpen);
+
   return (
     <>
       <h1>Hello</h1>
@@ -14,6 +18,7 @@ export default function Home() {
         <Link href={'/post/43'}>Post 43</Link>
         <Link href={'/post/53'}>Post 53</Link>
       </Flex>
+      <Accordion onChange={setIsOpen.toggle}>ボタン</Accordion>
     </>
   );
 }
